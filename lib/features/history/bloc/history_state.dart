@@ -1,10 +1,14 @@
 part of 'history_bloc.dart';
 
-sealed class HistoryState extends Equatable {
+abstract class HistoryState extends Equatable {
   const HistoryState();
 }
 
-final class HistoryInitial extends HistoryState {
+class HistoryUpdateState extends HistoryState {
+  final List<HistoryEntities> historyList;
+
+  const HistoryUpdateState({required this.historyList});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [historyList];
 }

@@ -17,36 +17,25 @@ final ThemeData lightTheme = ThemeData(
   ),
   textTheme: GoogleFonts.poppinsTextTheme(
     const TextTheme(
-      titleLarge: TextStyle(
-        fontSize: 24,
-        fontWeight: AppConstant.fontW600,
-        color: AppColors.textPrimary,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: AppConstant.fontW600,
-        color: AppColors.textPrimary,
-      ),
       titleSmall: TextStyle(
         fontSize: 16,
         fontWeight: AppConstant.fontW600,
         color: AppColors.textPrimary,
       ),
-      bodyLarge: TextStyle(
-        fontSize: 20,
-        fontWeight: AppConstant.fontNormal,
-        color: AppColors.textPrimary,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 16,
-        fontWeight: AppConstant.fontNormal,
-        color: AppColors.textPrimary,
-      ),
       bodySmall: TextStyle(
-        fontSize: 14,
-        fontWeight: AppConstant.fontNormal,
+        fontSize: 12,
+        fontWeight: AppConstant.fontW500,
         color: AppColors.textPrimary,
       ),
+    ),
+  ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColors.primary,
+    foregroundColor: AppColors.white,
+    elevation: 0,
+    titleTextStyle: GoogleFonts.poppins(
+      fontSize: 16,
+      fontWeight: AppConstant.fontW600,
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
@@ -56,18 +45,37 @@ final ThemeData lightTheme = ThemeData(
       horizontal: 12,
       vertical: 8,
     ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(
+        color: AppColors.surface,
+      ),
+    ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(
+        color: AppColors.surface,
+      ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(
+        color: AppColors.surface,
+      ),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(
+        color: AppColors.error,
+      ),
     ),
     hintStyle: GoogleFonts.poppins(
       fontSize: 14,
       color: AppColors.textPrimary.withValues(alpha: 0.7),
+    ),
+    labelStyle: GoogleFonts.poppins(
+      fontSize: 14,
+      color: AppColors.textPrimary,
     ),
     errorStyle: GoogleFonts.poppins(
       fontSize: 12,

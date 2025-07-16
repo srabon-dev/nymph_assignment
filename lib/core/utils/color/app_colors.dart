@@ -1,4 +1,4 @@
-import 'dart:ui';
+import '../../core_export.dart';
 
 class AppColors {
   static const primary = Color(0xFF128C7E);

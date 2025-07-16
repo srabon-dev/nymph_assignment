@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: lightTheme,
 
-      home: RepeatTextScreen(),
+      home: const RepeatTextScreen(),
     );
   }
 }
