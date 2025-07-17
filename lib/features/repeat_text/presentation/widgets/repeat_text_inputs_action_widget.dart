@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 
 import '../../../../core/core_export.dart';
+import 'repeat_text_font_picker.dart';
 
 class RepeatTextInputsActionWidget extends StatelessWidget {
   const RepeatTextInputsActionWidget({
@@ -8,11 +9,15 @@ class RepeatTextInputsActionWidget extends StatelessWidget {
     required this.onTap,
     required this.repeatText,
     required this.repeatNumber,
+    required this.availableFonts,
+    required this.selectedFont,
   });
 
   final VoidCallback onTap;
   final TextEditingController repeatText;
   final TextEditingController repeatNumber;
+  final List<String> availableFonts;
+  final ValueNotifier<String> selectedFont;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,14 @@ class RepeatTextInputsActionWidget extends StatelessWidget {
       children: [
         TextFormField(
           controller: repeatText,
-          maxLines: 5,
+          maxLines: 7,
           minLines: 3,
+          maxLength: 500,
           keyboardType: TextInputType.text,
           style: Theme.of(context).textTheme.titleSmall,
           decoration: const InputDecoration(
             hintText: "Enter repeat text",
+            counterText: ""
           ),
           validator: (value) {
             final trimmed = value?.trim() ?? '';
@@ -62,6 +69,10 @@ class RepeatTextInputsActionWidget extends StatelessWidget {
             }
             return null;
           },
+        ),
+        RepeatTextFontPicker(
+          selectedFont: selectedFont,
+          availableFonts: availableFonts,
         ),
         ElevatedButton(
           onPressed: onTap,

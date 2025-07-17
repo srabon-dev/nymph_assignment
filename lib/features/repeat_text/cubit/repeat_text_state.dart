@@ -4,12 +4,19 @@ abstract class RepeatTextState extends Equatable {
   const RepeatTextState();
 }
 
-class RepeatTextInitialState extends RepeatTextState {
+class RepeatTextUpdatedState extends RepeatTextState {
   final String text;
-  final int index;
+  final String font;
+  final int count;
+  final List<String> availableFonts;
 
-  const RepeatTextInitialState({required this.text, required this.index});
+  const RepeatTextUpdatedState({
+    required this.text,
+    required this.font,
+    required this.count,
+    this.availableFonts  = const [],
+  });
 
   @override
-  List<Object> get props => [text, index];
+  List<Object> get props => [text, font, count, availableFonts];
 }

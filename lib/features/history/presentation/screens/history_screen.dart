@@ -9,6 +9,7 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+
   @override
   void initState() {
     super.initState();
@@ -16,6 +17,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       context.read<HistoryBloc>().add(const HistoryLoadEvent());
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           if (state is HistoryUpdateState) {
             final list = state.historyList;
 
-            print("Build");
+            debugPrint("Build");
 
             if(list.isEmpty){
               return const Center(child: Text("No data found"));
@@ -36,10 +38,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               itemCount: list.length,
+              reverse: true,
               itemBuilder: (context, index) {
                 final item = list[index];
 
-                print("Item Build $index");
+                debugPrint("Item Build $index");
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 5.0),

@@ -1,10 +1,16 @@
 import '../../../../core/core_export.dart';
 
 class RepeatTextCard extends StatelessWidget {
-  const RepeatTextCard({super.key, required this.index, required this.text});
+  const RepeatTextCard({
+    super.key,
+    required this.index,
+    required this.text,
+    required this.font,
+  });
 
   final int index;
   final String text;
+  final String font;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,11 @@ class RepeatTextCard extends StatelessWidget {
               child: Text(
                 text,
                 maxLines: 3,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: safeGoogleFont(
+                  fontSize: 12,
+                  fontName: font,
+                  color: AppColors.textPrimary,
+                ),
               ),
             ),
           ],

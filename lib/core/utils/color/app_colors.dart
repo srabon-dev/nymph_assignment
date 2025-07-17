@@ -9,6 +9,5 @@ class AppColors {
   static const error = Color(0xFFE53935);
   static const textPrimary = Color(0xFF303030);
 
-  static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
 }
