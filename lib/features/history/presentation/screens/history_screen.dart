@@ -1,5 +1,6 @@
 import '../../../../core/core_export.dart';
 import '../../bloc/history_bloc.dart';
+import '../widgets/history_card.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -9,7 +10,6 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -21,65 +21,37 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("History"),
-        centerTitle: true,
-      ),
-      body: BlocBuilder<HistoryBloc, HistoryState>(
-        builder: (context, state) {
-          if (state is HistoryUpdateState) {
-            final list = state.historyList;
+      appBar: AppBar(title: const Text("History"), centerTitle: true),
+      body: SafeArea(
+        top: false,
+        child: BlocBuilder<HistoryBloc, HistoryState>(
+          builder: (context, state) {
+            if (state is HistoryUpdateState) {
+              final list = state.historyList.reversed.toList();
 
-            debugPrint("Build");
+              debugPrint("Build");
 
-            if(list.isEmpty){
-              return const Center(child: Text("No data found"));
+              if (list.isEmpty) {
+                return const Center(child: Text("No data found"));
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  final item = list[index];
+
+                  debugPrint("Item Build $index");
+
+                  return HistoryCard(item: item, index: index);
+                },
+              );
             }
-            return ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              itemCount: list.length,
-              reverse: true,
-              itemBuilder: (context, index) {
-                final item = list[index];
-
-                debugPrint("Item Build $index");
-
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: AppColors.surface,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Row(
-                      spacing: 8,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item.text,
-                            maxLines: 3,
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: (){
-                            context.read<HistoryBloc>().add(
-                              HistoryDeleteEvent(index: index),
-                            );
-                          },
-                          icon: const Icon(Icons.delete),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          }
-          return const Center(child: Text("No data found"));
-        },
+            return const Center(child: Text("No data found"));
+          },
+        ),
       ),
     );
   }
 }
+
+

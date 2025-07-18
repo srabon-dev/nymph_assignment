@@ -21,7 +21,7 @@ class RepeatTextFontPicker extends StatelessWidget {
       child: ValueListenableBuilder(
         valueListenable: selectedFont,
         builder: (_, font, _) {
-          print(font);
+          debugPrint(font);
           return DropdownButton<String>(
             isExpanded: true,
             value: font,
